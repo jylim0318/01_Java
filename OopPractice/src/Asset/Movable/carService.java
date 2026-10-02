@@ -16,7 +16,7 @@ package Asset.Movable;
 
 import Asset.Common.ConsoleView;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class carService {
@@ -38,6 +38,29 @@ public class carService {
     private  final int REMAININGYEARS     = 0;      // 내용년수 (업무용 차량 용 상수)
     private  long accumulatedDepreciation = 0L;      // 경과년수
 
+    // 장부가액 감가상각비 경과년수 배열 출력
+    public class outVariable {
+
+        private long bookValue;
+
+        private long acquisitionCost;
+
+        private  int  elapsedYears;
+
+        public void setBookValue(long bookValue ) {
+            this.bookValue = bookValue;
+        }
+
+        public void setAcquisitionCost(long acquisitionCost ) {
+            this.acquisitionCost = acquisitionCost;
+        }
+
+        public void setElapsedYears(int elapsedYears ) {
+            this.elapsedYears = elapsedYears;
+        }
+
+    }
+
     //정률법,이중체감법 산식용 Variable
     private  double depreciationRate   = 0; //상각률
     private  long   beginningBookValue = 0; //기초 장부가액
@@ -54,6 +77,9 @@ public class carService {
 
     //공통 객체 호출
     ConsoleView view;
+
+    //출력용 bean객체 호출
+    outVariable outvarr = new outVariable();
 
     public  carService(ConsoleView view) {
         this.view = view;
@@ -72,12 +98,13 @@ public class carService {
 
     }
     // 정객법 연간 감가상각비 산출 메서드
-    public long SLannualDepreciation(long acquisitionCost,long residualValue, long remainingYears) {
+    public void  setAnnualDepreciation(long acquisitionCost,long residualValue, long remainingYears) {
 
         annualDepreciation = (acquisitionCost - residualValue)/remainingYears;
 
+        this.annualDepreciation =  annualDepreciation;
 
-        return annualDepreciation;
+
     }
 
     // 정액법 장부가액 산출 메서드
@@ -86,10 +113,14 @@ public class carService {
         //최초 장부가액은 취득가액으로 초기화
         bookValue = acquisitionCost;
 
+        //List
+
+//        List<Long> bookValueArr = new ArrayList<>();
+
         do {
 
+            outvarr.setBookValue(bookValue);
             bookValue -= (annualDepreciation * elapsedYears);
-            //ArrayList<>
             elapsedYears++;
 
         }while(bookValue == 0);
@@ -97,6 +128,9 @@ public class carService {
         return bookValue;
 
     }
+    public List<>
+    // 장부가액
+
 
 
 }
