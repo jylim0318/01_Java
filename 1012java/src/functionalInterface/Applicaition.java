@@ -1,6 +1,7 @@
 package functionalInterface;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -31,6 +32,8 @@ public class Applicaition {
         Runnable runnable =() -> System.out.println("러너블 실행");
 
         runnable.run();
+
+        Scanner
 
         Consumer<String> consumer = (String str) -> System.out.println(str);
 
